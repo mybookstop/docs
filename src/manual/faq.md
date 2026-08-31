@@ -1,27 +1,5 @@
----
-title: 常见问题
-description: MyBooks 常见问题
----
-
-本文档整理了 MyBooks 使用过程中最常见的问题及其解决方案。如果您遇到的问题未在此列出，请访问 [GitHub Issues](https://github.com/PoxenStudio/MyBooks/issues) 寻求帮助，或者在
-MyBooks公众号
-![MyBooks 公众号二维码](images/gongzhonghao_talebook.jpg)
-上私信回复更快。
-
-## 目录
-
-- [部署与安装](#deployment)
-- [书籍导入](#import)
-- [元数据管理](#metadata)
-- [格式转换](#formats)
-- [推送与传输](#push)
-- [WebDAV](#webdav)
-- [有声书](#audio)
-- [权限问题](#permission)
-- [性能优化](#performance)
-- [其他问题](#other)
-
----
+# 常见问题
+本文档整理了 MyBooks 使用过程中最常见的问题及其解决方案。如果您遇到的问题未在此列出，请访问 [GitHub Issues](https://github.com/PoxenStudio/MyBooks/issues) 寻求帮助，或者在MyBooks公众号上私信反馈。
 
 ## 🚀 部署与安装
 
@@ -29,7 +7,7 @@ MyBooks公众号
 
 最简单的方式是使用 Docker Compose：
 
-```
+```yaml
 services:
   MyBooks:
     restart: always
@@ -54,7 +32,7 @@ services:
 
 这两个参数用于设置容器内进程的用户权限，建议设置为您系统中实际用户的 UID 和 GID，可以通过命令查看：
 
-```
+```bash
 id -u  # 查看 UID
 id -g  # 查看 GID
 ```
@@ -65,7 +43,7 @@ id -g  # 查看 GID
 
 停止容器，拉取最新镜像，重新启动：
 
-```
+```bash
 docker compose down
 docker compose pull
 docker compose up -d
@@ -73,9 +51,20 @@ docker compose up -d
 
 数据存储在挂载的卷中，升级不会丢失数据。
 
----
+## 🖥️Windows安装
+自v3.47起提供在Windows 10之后版本上独立的安装程序，不依赖Docker。可以在各个release的附件中下载。
+![Wins Installer](images/win_installer.png)
 
-## 书籍导入
+安装后可以会出现```MyBooks Service```程序, 提供停止、重启和卸载操作。
+启动后，服务通过本机ip可以访问。
+![windows_service](images/win_service.jpg)
+
+数据目录在当前用户的AppData/Local目录下， 可以直接查看。
+
+* Windows上更新时需要先卸载旧版本，再安装新版本才会生效。
+
+
+## ⬆️书籍导入
 
 ### 为什么扫描导入后看不到书籍？
 
@@ -104,7 +93,14 @@ MyBooks 基于 Calibre开发，完全兼容其库结构：
 
 ✅ 迁移后依然可以继续使用 Calibre 桌面端管理。
 
----
+## 🌟首页调整
+首页默认显示的组件较多，包括阅读数据看板、在读书籍、书单推荐、新评书籍和随机推荐。以上各项均可以在系统设置配置关闭或者显示书籍个数(为0表示不显示)：
+- `基础信息` - `随机推荐图书数量` 设置0时表示关闭
+- `浏览与阅读` - `在首页显示阅读统计Banner` 可以关闭阅读数据看板
+- `浏览与阅读` - `在首页显示在读书籍` 可以关闭在读书籍列表
+- `浏览与阅读` - `在首页展示其他用户评论过的书籍` 可以关闭新评书籍列表
+- `浏览与阅读` - `在首页展示书单推荐` 可以关闭书单推荐更表
+
 
 ## 📝 元数据管理
 
@@ -120,7 +116,7 @@ MyBooks 基于 Calibre开发，完全兼容其库结构：
 
 确保部署了 douban-rs-api 服务。在 docker-compose.yml 中添加：
 
-```
+```yaml
 services:
   douban-rs-api:
     restart: always
@@ -141,7 +137,6 @@ services:
 3. 在"管理"→"系统设置"→"分类管理"中设置好分类
 4. 回到图书管理页面进行批量操作
 
----
 
 ## 🔄 格式转换
 
@@ -159,7 +154,6 @@ services:
 
 转换后的文件会自动添加到该书籍的格式列表中，在书籍详情页的"下载"区域可以看到所有格式。文件存储在绑定目录的 `books/library/` 对应书籍文件夹下。
 
----
 
 ## 📤 推送与传输
 
@@ -184,7 +178,6 @@ services:
 
 或者使用 WebDAV 方式直接在设备上挂载书库。
 
----
 
 ## 🌐 WebDAV
 
@@ -203,7 +196,6 @@ services:
 - **HTTPS 问题：**部分客户端不支持自签名证书，建议使用 HTTP 或配置正式证书
 - **防火墙：**确保端口未被防火墙阻止
 
----
 
 ## 🎧 有声书
 
@@ -225,7 +217,6 @@ services:
 - 直接复制音频文件到手机或专业听书软件
 - 通过 WebDAV 在移动设备上访问
 
----
 
 ## 🔒 权限问题
 
@@ -247,7 +238,6 @@ services:
 - 开启"需要激活"选项，手动审核新用户
 - 使用"私藏"功能将特定书籍设为仅自己可见
 
----
 
 ## ⚡ 性能优化
 
@@ -269,7 +259,6 @@ services:
 - 适当增加容器的内存和 CPU 限制
 - 查看日志排查异常：`docker logs MyBooks --tail 100`
 
----
 
 ## 🔧 其他问题
 
@@ -305,15 +294,12 @@ http://你的IP:端口/opds/
 
 使用 MyBooks 账号密码认证即可。兼容 KyBook、Marvin、FBReader 等主流阅读器。
 
----
-
 ### 💬 还有其他问题？
 
 - 🌐 项目主页：<https://mybooks.top>
 - 🐙 GitHub：[PoxenStudio/MyBooks](https://github.com/PoxenStudio/mybooks)
 - 💬 问题反馈：关注
-  MyBooks公众号
+  MyBooks公众号私信
   ![MyBooks 公众号二维码](images/gongzhonghao_talebook.jpg)
-  后私信，响应更快
 
-⚡ MyBooks 常见问题解答 · 持续更新中 · 最后更新：2026年3月
+⚡ MyBooks 常见问题解答 · 持续更新中 · 最后更新：2026年8月
