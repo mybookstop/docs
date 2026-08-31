@@ -10,7 +10,8 @@ export default defineConfig({
   lastUpdated: true,
   themeConfig: {
     nav: [
-      { text: 'API', link: '/api/' }
+      { text: 'API', link: '/api/' },
+      { text: '产品手册', link: '/manual/' }
     ],
     sidebar: {
       '/api/': [
@@ -18,6 +19,15 @@ export default defineConfig({
           text: 'API 文档',
           items: [
             { text: 'MyBooks Web API', link: '/api/mybooks' }
+          ]
+        }
+      ],
+      '/manual/': [
+        {
+          text: '产品手册',
+          items: [
+            { text: '快速入门', link: '/manual/quickstart' },
+            { text: '常见问题', link: '/manual/faq' }
           ]
         }
       ]
