@@ -195,7 +195,7 @@ Token是在系统设置-AI助手中分配。
 
 ## 丰富的实用工具
 在`系统管理`-`工具箱`下提供了丰富的管理工具，从作者清理、文件修改、EPUB美化到MimoTTS有声书生成，可以解决大部分管理需求。
-![Toolbox](toolbox.jpg)
+![Toolbox](images/toolbox.jpg)
 
 ## 提升阅读体验
 
