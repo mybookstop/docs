@@ -9,11 +9,6 @@ MyBooks 项目的 Markdown 文档，使用 VitePress 构建并发布到 GitHub P
 - `src/api/index.md` -> `https://mybookstop.github.io/docs/api/`
 - `src/api/mybooks.md` -> `https://mybookstop.github.io/docs/api/mybooks`
 
-图片可以在 Markdown 中使用相对路径引用，VitePress 会在构建时处理资源：
-
-```markdown
-![接口流程图](./images/request-flow.png)
-```
 
 ## 本地开发
 

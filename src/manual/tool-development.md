@@ -119,7 +119,7 @@ mytool build
 4. 安装/更新后需要重启 MyBooks 服务，新工具才会真正生效。
 
 系统设置中的相关配置项:
-![images/toolbox_settings.png]
+![Settings](images/toolbox_settings.png)
 
 
 ## 完整示例：EPUB 翻译工具
