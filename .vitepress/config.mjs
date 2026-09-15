@@ -51,6 +51,7 @@ export default defineConfig({
           text: '产品手册',
           items: [
             { text: '快速入门', link: '/manual/quickstart' },
+            { text: '系统设置说明', link: '/manual/settings' },
             { text: '开发 MyBooks 工具', link: '/manual/tool-development' },
             { text: '常见问题', link: '/manual/faq' }
           ]

@@ -10,5 +10,6 @@ description: MyBooks 产品手册
 ## 文档列表
 
 - [快速入门](./quickstart)
+- [系统设置说明](./settings)
 - [开发 MyBooks 工具](./tool-development)
 - [常见问题](./faq)
