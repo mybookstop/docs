@@ -150,5 +150,6 @@ tool_epub_translator/
 ## 参考链接
 
 - Tools Builder 文档：<https://poxenstudio.github.io/tools_builder>
-- 示例项目 EPUB Translator：<https://github.com/PoxenStudio/tool_epub_translator>
+- 简单的示例项目 Tag清理工具: <https://github.com/PoxenStudio/tool_tags_cleaner>
+- 较复杂的示例项目 EPUB Translator：<https://github.com/PoxenStudio/tool_epub_translator>
 - MyBooks 项目仓库：<https://github.com/poxenstudio/mybooks>
