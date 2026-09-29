@@ -3948,7 +3948,7 @@ POST `tools/call` 响应（`text` 为工具结果的 JSON 字符串）：
 
 ## 14. 书单接口
 
-书单（booklist）是用户自建的书籍集合，每人最多 20 个，可设为公开供他人浏览、点赞。设计见 [BookList_Design.md](BookList_Design.md)。
+书单（booklist）是用户自建的书籍集合，每人最多 20 个，可设为公开供他人浏览、点赞。
 
 **书单对象**字段：`id`、`name`、`description`、`color`、`is_public`、`is_sticky`（管理员置顶）、`view_count`、`like_count`、`book_count`、`create_time`、`update_time`（ISO8601）、`owner`（`{id, username, avatar}`）、`is_owner`、`liked_by_me`；列表接口另带 `cover_books`（最近加入的最多 12 本：`{book_id, title, img, thumb, href}`）。
 
@@ -4173,7 +4173,7 @@ POST `tools/call` 响应（`text` 为工具结果的 JSON 字符串）：
 
 ## 15. 阅读数据同步接口
 
-供 MyReader 等客户端同步书籍/批注/阅读配置，以及导入第三方批注。完整协议见 [MyBooks_Sync_API.md](MyBooks_Sync_API.md)。所有接口需开启同步功能，否则返回 `sync.disabled`。
+供 MyReader 等客户端同步书籍/批注/阅读配置，以及导入第三方批注。所有接口需开启同步功能，否则返回 `sync.disabled`。
 
 ### 15.1 同步记录
 
@@ -4276,7 +4276,7 @@ POST `tools/call` 响应（`text` 为工具结果的 JSON 字符串）：
 
 ## 16. Toolbox 工具接口
 
-工具箱接口均需**管理员权限**（`bg_raw`、`texture_raw` 两个图片资源接口除外）。长任务类工具的通用模式：`POST` 启动任务 → 返回 `{"err": "ok", "msg": "...已启动..."}`；同一工具同时只能运行一个任务（否则 `task.running`）；`GET .../progress` 轮询，返回 `data`（含 `status`: `running`/`completed`/`failed`/`cancelled`、`progress` 百分比及工具特定字段），失败时 `err=task.failed`，从未启动时 `err=task.not_found`。工具设计见 [toolbox_design.md](toolbox_design.md)、[Toolbox_Dynamic_Design.md](Toolbox_Dynamic_Design.md)。
+工具箱接口均需**管理员权限**（`bg_raw`、`texture_raw` 两个图片资源接口除外）。长任务类工具的通用模式：`POST` 启动任务 → 返回 `{"err": "ok", "msg": "...已启动..."}`；同一工具同时只能运行一个任务（否则 `task.running`）；`GET .../progress` 轮询，返回 `data`（含 `status`: `running`/`completed`/`failed`/`cancelled`、`progress` 百分比及工具特定字段），失败时 `err=task.failed`，从未启动时 `err=task.not_found`。
 
 ### 16.1 工具管理
 
