@@ -70,7 +70,7 @@ docker compose up -d
 
 可能的原因：
 
-- 文件未放在正确的目录（应该是 `/data/books/imports/`）
+- 文件未放在正确的目录（应该是 `/data/books/imports/`） 文件较多可以直接以docker volume绑定到/data/books/imports目录下或者imports本身，然后就可以进行扫描导入，不用进行大量的文件操作。
 - 点击了`扫描书籍`但未点击`导入全部书籍`
 - 导入任务正在后台执行，刷新页面查看进度
 - 文件格式不支持（支持 EPUB、MOBI、AZW3、PDF 等常见格式）
