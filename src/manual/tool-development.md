@@ -84,6 +84,8 @@ my_tool/
 
 所有方法都是同步调用；耗时操作请配合 `self.api.tasks` 做成后台任务，避免阻塞请求。
 
+详细Core API文档见[MyBooks Tools Builder](https://poxenstudio.github.io/tools_builder/)。
+
 ## 前端：MyBooksToolBridge
 
 如果工具带界面，`frontend/index.html` 中引入桥接脚本即可获得与宿主交互的能力：
