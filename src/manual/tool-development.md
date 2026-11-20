@@ -100,7 +100,26 @@ my_tool/
   （`/api/toolbox/tool/{tool_id}/{path}` 的封装）
 - `MyBooksToolBridge.notify(message, level)` —— 请求宿主弹出通知
 - `MyBooksToolBridge.confirm(options)` —— 请求宿主弹出与 MyBooks 站内一致的确认对话框，
-  返回 `Promise<boolean>`：点确认 `true`，点取消或关闭 `false`
+  返回 `Promise<boolean>`：点确认 `true`，点取消或关闭 `false` （在`MyBooks v4.8+`上支持）
+
+通知对话框 `notify(message, level)` 的参数：
+
+| 参数 | 类型 | 说明 |
+| --- | --- | --- |
+| `message` | string | 通知内容，按 HTML 渲染（可用 `<br>`、`<b>` 等简单标签） |
+| `level` | string | 通知类型：`success` / `info` / `warning` / `error`，不传时默认 `info`；其它值不会报错，但只显示无类型样式的普通提示 |
+
+- `success` 约 1.3 秒后自动关闭，适合「保存成功」这类不需要用户处理的操作结果；
+- `info` / `warning` / `error` 会一直显示，直到用户点击「关闭」，适合需要用户看清的失败原因；
+- 只是过程性提示、不需要打断操作的场景，建议用 `info`；只有真正失败的才用 `error`。
+
+```js
+var bridge = window.MyBooksToolBridge;
+
+bridge.notify('导出完成', 'success');
+bridge.notify('文件解析失败：不支持的编码', 'error');
+bridge.notify('正在重建索引，请稍候…', 'info');
+```
 
 确认对话框的参数：
 
