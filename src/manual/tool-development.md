@@ -99,6 +99,45 @@ my_tool/
 - `MyBooksToolBridge.fetch(path, options)` —— 调用工具自身的后端接口
   （`/api/toolbox/tool/{tool_id}/{path}` 的封装）
 - `MyBooksToolBridge.notify(message, level)` —— 请求宿主弹出通知
+- `MyBooksToolBridge.confirm(options)` —— 请求宿主弹出与 MyBooks 站内一致的确认对话框，
+  返回 `Promise<boolean>`：点确认 `true`，点取消或关闭 `false`
+
+确认对话框的参数：
+
+| 参数 | 类型 | 说明 |
+| --- | --- | --- |
+| `title` | string | 对话框标题，不传则不显示标题栏 |
+| `message` | string | 正文，按纯文本渲染，不支持 HTML |
+| `confirmText` | string | 确认按钮文案，不传时用宿主当前语言的「确定」 |
+| `cancelText` | string | 取消按钮文案，不传时用宿主当前语言的「取消」 |
+| `color` | string | 确认按钮/标题栏配色，取 Vuetify 主题色名（如 `error`、`warning`），默认 `primary` |
+
+```js
+var bridge = window.MyBooksToolBridge;
+
+bridge.confirm({
+  title: '删除确认',
+  message: '该操作不可恢复，确定继续吗？',
+  confirmText: '删除',
+  cancelText: '取消',
+  color: 'error',
+}).then(function (ok) {
+  if (ok) {
+    // 用户点了确认
+  }
+});
+```
+
+文案请由工具自己按 `bridge.locale` 提供；`confirm` 用于删除、覆盖等不可逆操作，普通的操作
+结果提示仍用 `notify`。旧版宿主或本地 mock 环境可能没有这个方法，可以这样降级：
+
+```js
+if (typeof bridge.confirm === 'function') {
+  // 走确认框
+} else {
+  // 直接执行
+}
+```
 
 多语言可以直接复用脚手架自带的 `frontend/lib/i18n.js`：`frontend/locales/manifest.json` 声明支持的
 语言，`<code>.json` 存放对应文案，运行时按 `bridge.locale` 自动匹配最接近的语言。
